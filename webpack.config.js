@@ -2,7 +2,8 @@
 const path = require('path');
 
 module.exports = (env, argv) => {
-  const isProd = argv.mode === 'production';
+//   const isProd = argv.mode === 'production';
+  const isProd = false;
   return {
     entry: path.resolve(__dirname, 'client/scripts/index.js'),
     output: {
