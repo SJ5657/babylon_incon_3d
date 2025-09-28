@@ -11,8 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babylonjs/core": "^8.29.0",
+    "@babylonjs/materials": "^8.29.0",
+    "babylon": "^6.18.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "mini-css-extract-plugin": "^2.9.4",
     "nodemon": "^3.1.10",
     "path": "^0.12.7"
   },
