@@ -1,26 +1,18 @@
 // 루트(package.json과 같은 위치)에 생성
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => {
 //   const isProd = argv.mode === 'production';
   const isProd = false;
   return {
-    entry: {
-      main: path.resolve(__dirname, 'client/scripts/index.js'),
-      style: path.resolve(__dirname, 'client/css/style.css')
-    },
+    entry: path.resolve(__dirname, 'client/scripts/index.js'),
     output: {
       path: path.resolve(__dirname, 'public/js'),
-      filename: '[name].js',
+      filename: isProd ? 'bundle.[contenthash].js' : 'bundle.js',
       clean: true,
       publicPath: '/js/',
     },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: '../css/[name].css'
-      })
-    ],    mode: isProd ? 'production' : 'development',
+    mode: isProd ? 'production' : 'development',
     devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
     module: {
       rules: [
@@ -34,7 +26,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.(png|jpe?g|gif|svg|webp)$/i,
@@ -44,8 +36,6 @@ module.exports = (env, argv) => {
         },
       ],
     },
-
-
     resolve: { extensions: ['.js'] },
     performance: { hints: false },
     stats: 'minimal',
